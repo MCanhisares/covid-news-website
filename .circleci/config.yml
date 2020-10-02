@@ -18,4 +18,4 @@ jobs:
 workflows:
   pr-check:
     jobs:
-      - lint-test:          
+      - lint-test     
