@@ -18,8 +18,4 @@ jobs:
 workflows:
   pr-check:
     jobs:
-      - lint-test:
-          filters:
-            branches:
-              ignore:
-                - master
+      - lint-test:          
