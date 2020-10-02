@@ -34,7 +34,7 @@
   },
   "scripts": {
     "lint": "eslint src/ --ext .js --ext .jsx --ext .ts --ext .tsx",
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test",
     "test-watch": "react-scripts test",
