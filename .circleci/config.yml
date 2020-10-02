@@ -1,0 +1,25 @@
+version: 2.1
+aliases:
+  - &node-defaults    
+    docker:
+      - image: circleci/node:12
+orbs:
+  node: circleci/node@4.0.0
+
+jobs:
+  lint-test:
+    <<: *node-defaults
+    steps:
+      - checkout
+      - yarn install
+      - yarn lint
+      - yarn test
+      
+workflows:
+  pr-check:
+    jobs:
+      - lint-test:
+          filters:
+            branches:
+              ignore:
+                - master
