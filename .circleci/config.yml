@@ -3,17 +3,28 @@ aliases:
   - &node-defaults    
     docker:
       - image: circleci/node:12
+  - &install-node-dependencies
+    name: Install NodeJS dependencies
+    command: yarn install
+  - &lint
+    name: Run TS linter
+    command: yarn lint
+  - &unit-test
+    name: Run unit tests
+    command: yarn test
 orbs:
   node: circleci/node@4.0.0
+
+
 
 jobs:
   lint-test:
     <<: *node-defaults
     steps:
       - checkout
-      - yarn
-      - yarn lint
-      - yarn test
+      - run: *install-node-dependencies        
+      - run: *lint
+      - run: *unit-test
       
 workflows:
   pr-check:
