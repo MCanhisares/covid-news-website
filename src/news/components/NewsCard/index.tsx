@@ -2,14 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { Article } from '../../models/Article'
 import { format, parseISO } from 'date-fns'
-
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  height: 200px;
-`
+import { Container } from 'react-bootstrap'
+import ptBR from 'date-fns/locale/pt-BR'
+import './index.css'
 
 const Img = styled.img`
   width: 30%;
@@ -28,7 +23,7 @@ const Date = styled.p`
   text-transform: uppercase;
 `
 
-const Title = styled.h1`
+const Title = styled.h2`
   color: black;
 `
 
@@ -51,11 +46,20 @@ type Props = {
 
 export const NewsCard: React.FC<Props> = ({ article }) => {
   const date = article.publishedAt && parseISO(article.publishedAt)
+  const openNews = (url?: string) => {
+    if (!url) {
+      return
+    }
+    const win = window.open(url, '_blank')
+    if (win != null) {
+      win.focus()
+    }
+  }
   return (
-    <Container>
+    <Container className="card-container" onClick={() => openNews(article.url)}>
       <Img src={article.urlToImage} />
       <ContentWrapper>
-        {date && <Date>{format(date, 'dd MMMM yyyy')}</Date>}
+        {date && <Date>{format(date, 'dd MMMM yyyy', { locale: ptBR })}</Date>}
         <Title>{article.title}</Title>
         <Description>{article.description}</Description>
 
