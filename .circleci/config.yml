@@ -11,7 +11,7 @@ jobs:
     <<: *node-defaults
     steps:
       - checkout
-      - yarn install
+      - yarn
       - yarn lint
       - yarn test
       
