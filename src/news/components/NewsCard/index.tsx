@@ -46,6 +46,7 @@ type Props = {
 
 export const NewsCard: React.FC<Props> = ({ article }) => {
   const date = article.publishedAt && parseISO(article.publishedAt)
+
   const openNews = (url?: string) => {
     if (!url) {
       return
@@ -55,6 +56,7 @@ export const NewsCard: React.FC<Props> = ({ article }) => {
       win.focus()
     }
   }
+
   return (
     <Container className="card-container" onClick={() => openNews(article.url)}>
       <Img src={article.urlToImage} />
@@ -63,11 +65,9 @@ export const NewsCard: React.FC<Props> = ({ article }) => {
         <Title>{article.title}</Title>
         <Description>{article.description}</Description>
 
-        {article.tags && (
+        {article.category && (
           <TagsWrapper>
-            {article.tags.map(tag => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
+            <Tag key={article.category}>{article.category}</Tag>
           </TagsWrapper>
         )}
       </ContentWrapper>

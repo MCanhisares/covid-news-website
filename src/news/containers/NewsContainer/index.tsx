@@ -1,18 +1,18 @@
-import { useNews } from '../../hooks/useNews'
 import { Loading } from '../../../common/loading'
 import React from 'react'
 import { NewsList } from '../../components/NewsList'
+import { useNews } from '../../hooks/useNews'
 
 export const NewsContainer = () => {
-  const { isLoading, isError, data } = useNews()
+  const { isLoading, error, data } = useNews()
 
   if (isLoading) {
     return <Loading />
   }
 
-  if (isError) {
+  if (error) {
     return <span>Ops, ocorreu um erro</span>
   }
 
-  return <NewsList articles={data?.data.articles || []} />
+  return <NewsList articles={data || []} />
 }

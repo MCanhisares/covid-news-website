@@ -18,7 +18,7 @@ type Props = {
 export const NewsList: React.FC<Props> = ({ articles }) => {
   const renderItem = (article: Article) => {
     return (
-      <Wrapper>
+      <Wrapper key={article.articleId}>
         <NewsCard article={article} />
       </Wrapper>
     )
