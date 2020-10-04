@@ -65,11 +65,9 @@ export const NewsCard: React.FC<Props> = ({ article }) => {
         <Title>{article.title}</Title>
         <Description>{article.description}</Description>
 
-        {article.tags && (
+        {article.category && (
           <TagsWrapper>
-            {article.tags.map(tag => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
+            <Tag key={article.category}>{article.category}</Tag>
           </TagsWrapper>
         )}
       </ContentWrapper>
