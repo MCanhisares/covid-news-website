@@ -1,4 +1,4 @@
-[![ecommerce-mobile-app](https://circleci.com/gh/MCanhisares/covid-news-website.svg?style=svg)](https://app.circleci.com/pipelines/github/MCanhisares/covid-news-website)
+[![MCanhisares](https://circleci.com/gh/MCanhisares/covid-news-website.svg?style=svg)](https://app.circleci.com/pipelines/github/MCanhisares/covid-news-website)
 
 # Covid News Website
 
