@@ -1,11 +1,24 @@
-import axios from 'axios'
 import { useQuery } from 'react-query'
-export const useNews = () => {
-  const apiKey = 'b6a930280dcb49759db636d0b87d5612'
+import firebase from 'firebase'
 
-  const fetchNews = axios.get(
-    `http://newsapi.org/v2/top-headlines?country=br&category=health&apiKey=${apiKey}`
+export const useNews = () => {
+  const db = firebase.firestore()
+  const firebaseQuery = db
+    .collection('articles')
+    .orderBy('publishedAt', 'desc')
+    .get()
+  const { data: rawData, isLoading, error } = useQuery(
+    'articles',
+    () => firebaseQuery
   )
 
-  return useQuery('news', () => fetchNews)
+  const data = rawData?.docs.map(d => {
+    return d.data()
+  })
+
+  return {
+    data,
+    isLoading,
+    error,
+  }
 }

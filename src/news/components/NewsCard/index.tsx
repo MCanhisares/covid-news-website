@@ -46,6 +46,7 @@ type Props = {
 
 export const NewsCard: React.FC<Props> = ({ article }) => {
   const date = article.publishedAt && parseISO(article.publishedAt)
+
   const openNews = (url?: string) => {
     if (!url) {
       return
@@ -55,6 +56,7 @@ export const NewsCard: React.FC<Props> = ({ article }) => {
       win.focus()
     }
   }
+
   return (
     <Container className="card-container" onClick={() => openNews(article.url)}>
       <Img src={article.urlToImage} />
