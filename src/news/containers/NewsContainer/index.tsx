@@ -20,7 +20,6 @@ export const NewsContainer = () => {
   const [lastArticleId, setLastArticleId] = useState<string | undefined>(
     undefined
   )
-  console.log({ category1: category })
   const { isLoading, isFetching, error, data } = useNews(
     category,
     lastArticleId
@@ -44,7 +43,6 @@ export const NewsContainer = () => {
     )
   }
 
-  console.log({ receivedData: data })
   return (
     <Container>{((data || []) as Article[]).map(a => renderItem(a))}</Container>
   )

@@ -2,7 +2,6 @@ import { usePaginatedQuery } from 'react-query'
 import firebase from 'firebase'
 
 export const useNews = (category?: string, startAfterId?: string) => {
-  console.log({ category, startAfterId })
   const db = firebase.firestore()
   let firebaseQuery = db
     .collection('articles')
@@ -29,7 +28,6 @@ export const useNews = (category?: string, startAfterId?: string) => {
   const data = rawData?.docs.map(d => {
     return d.data()
   })
-  console.log({ isLoading, isFetching, data })
 
   return {
     data,
