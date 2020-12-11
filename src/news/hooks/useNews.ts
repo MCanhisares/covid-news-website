@@ -1,39 +1,42 @@
 import { usePaginatedQuery } from 'react-query'
 import firebase from 'firebase'
+import { useState } from 'react'
 
 export const useNews = (category?: string, startAfterId?: string) => {
-  const db = firebase.firestore()
-  let firebaseQuery = db
-    .collection('articles')
-    .orderBy('publishedAt', 'desc')
-    .limit(25)
+  // const db = firebase.firestore()
+  // let firebaseQuery = db
+  //   .collection('articles')
+  //   .orderBy('publishedAt', 'desc')
+  //   .limit(25)
 
-  if (category) {
-    firebaseQuery = firebaseQuery.where('category', '==', category)
-  }
+  // if (qCategory) {
+  //   firebaseQuery = firebaseQuery.where('category', '==', category)
+  // }
 
-  if (startAfterId) {
-    firebaseQuery = firebaseQuery.startAfter(startAfterId)
-  }
-  const query = firebaseQuery.get()
+  // if (qStartAfterId) {
+  //   firebaseQuery = firebaseQuery.startAfter(qStartAfterId)
+  // }
+  // const query = firebaseQuery.get()
 
-  const {
-    resolvedData: rawData,
-    isLoading,
-    error,
-    isFetching,
-    fetchMore,
-  } = usePaginatedQuery('articles', () => query)
+  // const {
+  //   resolvedData: rawData,
+  //   isLoading,
+  //   error,
+  //   isFetching,
+  //   fetchMore,
+  // } = usePaginatedQuery(['articles', qStartAfterId], () => query)
 
-  const data = rawData?.docs.map(d => {
-    return d.data()
-  })
+  // const data = rawData?.docs.map(d => {
+  //   return d.data()
+  // })
 
-  return {
-    data,
-    isLoading,
-    isFetching,
-    error,
-    fetchMore,
-  }
+  // return {
+  //   setCategory: setQCategory,
+  //   setStartAfterId: setQStartAfterId,
+  //   data,
+  //   isLoading,
+  //   isFetching,
+  //   error,
+  //   fetchMore,
+  // }
 }
