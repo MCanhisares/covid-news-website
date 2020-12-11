@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './app/App'
 import * as serviceWorker from './serviceWorker'
 import * as firebase from 'firebase/app'
+import { BrowserRouter } from 'react-router-dom'
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,9 +19,9 @@ firebase.initializeApp({
 })
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
   document.getElementById('root')
 )
 

@@ -1,16 +1,29 @@
-import { useQuery } from 'react-query'
+import { usePaginatedQuery } from 'react-query'
 import firebase from 'firebase'
 
-export const useNews = () => {
+export const useNews = (category?: string, startAfterId?: string) => {
   const db = firebase.firestore()
-  const firebaseQuery = db
+  let firebaseQuery = db
     .collection('articles')
     .orderBy('publishedAt', 'desc')
-    .get()
-  const { data: rawData, isLoading, error } = useQuery(
-    'articles',
-    () => firebaseQuery
-  )
+    .limit(25)
+
+  if (category) {
+    firebaseQuery = firebaseQuery.where('category', '==', category)
+  }
+
+  if (startAfterId) {
+    firebaseQuery = firebaseQuery.startAfter(startAfterId)
+  }
+  const query = firebaseQuery.get()
+
+  const {
+    resolvedData: rawData,
+    isLoading,
+    error,
+    isFetching,
+    fetchMore,
+  } = usePaginatedQuery('articles', () => query)
 
   const data = rawData?.docs.map(d => {
     return d.data()
@@ -19,6 +32,8 @@ export const useNews = () => {
   return {
     data,
     isLoading,
+    isFetching,
     error,
+    fetchMore,
   }
 }
