@@ -25,8 +25,6 @@ export const NewsContainer = () => {
     lastArticleId
   )
 
-  useEffect(() => {}, [])
-
   if (isLoading || isFetching) {
     return <Loading />
   }
