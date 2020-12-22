@@ -5,6 +5,7 @@ import { Article } from '../../models/Article'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { NewsCard } from '../../components/NewsCard'
+import { openNews } from '../../components/NewsCard/logic'
 
 const Container = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ export const NewsContainer = () => {
   const renderItem = (article: Article) => {
     return (
       <Wrapper key={article.articleId}>
-        <NewsCard article={article} />
+        <NewsCard article={article} openNews={openNews} />
       </Wrapper>
     )
   }

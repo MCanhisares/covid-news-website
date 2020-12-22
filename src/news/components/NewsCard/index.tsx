@@ -42,23 +42,15 @@ const Tag = styled.p`
 
 type Props = {
   article: Article
+  openNews: (url?: string) => void
 }
 
-export const NewsCard: React.FC<Props> = ({ article }) => {
+
+
+export const NewsCard: React.FC<Props> = ({ article, openNews }) => {
   const date = article.publishedAt && parseISO(article.publishedAt)
-
-  const openNews = (url?: string) => {
-    if (!url) {
-      return
-    }
-    const win = window.open(url, '_blank')
-    if (win != null) {
-      win.focus()
-    }
-  }
-
   return (
-    <Container className="card-container" onClick={() => openNews(article.url)}>
+    <Container id="card-container-id" className="card-container" onClick={() => openNews(article.url)}>
       <Img src={article.urlToImage} />
       <ContentWrapper>
         {date && <Date>{format(date, 'dd MMMM yyyy', { locale: ptBR })}</Date>}

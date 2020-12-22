@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Article } from '../../models/Article'
 import { NewsCard } from '../NewsCard'
+import { openNews } from '../NewsCard/logic'
 
 const Container = styled.div`
   display: flex;
@@ -16,12 +17,13 @@ type Props = {
   articles: Article[]
 }
 export const NewsList: React.FC<Props> = ({ articles }) => {
-  const renderItem = (article: Article) => {
-    return (
-      <Wrapper key={article.articleId}>
-        <NewsCard article={article} />
-      </Wrapper>
-    )
-  }
   return <Container> {articles.map(a => renderItem(a))}</Container>
+}
+
+export const renderItem = (article: Article) => {
+  return (
+    <Wrapper key={article.articleId}>
+      <NewsCard article={article} openNews={openNews} />
+    </Wrapper>
+  )
 }
