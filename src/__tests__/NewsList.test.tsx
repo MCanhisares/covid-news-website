@@ -4,7 +4,6 @@ import { NewsList, renderItem } from '../news/components/NewsList'
 import { Article } from '../news/models/Article'
 
 describe('NewsList', () => {
-
   const article: Article = {
     articleId:
       '33297aec44982f83431d38d627e2b6490ae09a53d1b4a50de85b5c3280a29e0d',
@@ -20,7 +19,7 @@ describe('NewsList', () => {
       'https://conteudo.imguol.com.br/c/entretenimento/32/2020/10/01/files-in-this-file-aerial-photo-taken-on-june-2-2020-shows-a-gravedigger-standing-at-the-nossa-senhora-aparecida-cemetery-where-covid-19-victims-are-buried-daily-in-the-neighbourhood-of-1601596476977_v2_615x300.jpg',
   }
 
-  it('renders without crashing', () => {    
+  it('renders without crashing', () => {
     const component = shallow(<NewsList articles={[]} />)
     expect(component).toBeTruthy()
   })

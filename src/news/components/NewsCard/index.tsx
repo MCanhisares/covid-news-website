@@ -45,12 +45,14 @@ type Props = {
   openNews: (url?: string) => void
 }
 
-
-
 export const NewsCard: React.FC<Props> = ({ article, openNews }) => {
   const date = article.publishedAt && parseISO(article.publishedAt)
   return (
-    <Container id="card-container-id" className="card-container" onClick={() => openNews(article.url)}>
+    <Container
+      id="card-container-id"
+      className="card-container"
+      onClick={() => openNews(article.url)}
+    >
       <Img src={article.urlToImage} />
       <ContentWrapper>
         {date && <Date>{format(date, 'dd MMMM yyyy', { locale: ptBR })}</Date>}
