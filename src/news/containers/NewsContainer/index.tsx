@@ -1,5 +1,5 @@
 import { Loading } from '../../../common/loading'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNews } from '../../hooks/useNews'
 import { Article } from '../../models/Article'
 import { useParams } from 'react-router-dom'
@@ -18,13 +18,7 @@ const Wrapper = styled.div`
 
 export const NewsContainer = () => {
   const { category } = useParams<{ category: string }>()
-  const [lastArticleId, setLastArticleId] = useState<string | undefined>(
-    undefined
-  )
-  const { isLoading, isFetching, error, data } = useNews(
-    category,
-    lastArticleId
-  )
+  const { isLoading, isFetching, error, data } = useNews(category)
 
   if (isLoading || isFetching) {
     return <Loading />
